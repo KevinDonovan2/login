@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./firebase-config";
+import { auth } from "../conf/firebase-config";
 
 function Register() {
     const [email, setEmail] = useState("");
@@ -12,9 +12,12 @@ function Register() {
             await createUserWithEmailAndPassword(auth, email, password);
             alert("Inscription réussie !");
         } catch (error) {
+            console.error("Error code:", error.code);
+            console.error("Error message:", error.message);
             alert("Erreur : " + error.message);
         }
     };
+    
 
     return (
         <div>
